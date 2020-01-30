@@ -6,11 +6,15 @@ class Header extends Component {
   render() {
     return (
         <header>
-          <h1>{this.props.title}</h1>
+          <h1><a href="/welcome" onClick={function(e){
+            e.preventDefault();
+            alert('A clicked');
+          }} >{this.props.title}</a></h1>
         </header>
     );
   }
 }
+
 class Nav extends Component {
   render() {
     return (
@@ -37,18 +41,29 @@ class Article extends Component {
     );
   }
 }
-function App() {
-  return (
+class App extends Component {
+  state = {
+    mode:'r' //c r u d
+  }
+  render () {
+    var articleTag = null;
+    if(this.state.mode === 'Welcome'){
+        articleTag = <Article title="WEB" desc="WEB is ..."></Article>
+    } else if(this.state.mode === 'r') {
+        articleTag = <Article title="React" desc="React is ..."></Article>
+    }
+    return (
     <div className="App">
-        <Header title="WEB"></Header>
+        <Header title="WEB" ></Header>
         <Nav items={[
-                      {id:1, title:'HTML'},
-                      {id:2, title:'CSS'},
-                      {id:3, title:'JavaScript'}
+                      {id:1, title:'HTML', desc: "HTML is ..."},
+                      {id:2, title:'CSS', desc: "CSS is ..."},
+                      {id:3, title:'JavaScript', desc: "JavaScript is ..."}
                     ]}></Nav>
-        <Article title="WEB" desc="WEB is ..."></Article>
-    </div>
-  );
+        {articleTag}
+      </div>
+    ); 
+  }
 }
 
 export default App;
