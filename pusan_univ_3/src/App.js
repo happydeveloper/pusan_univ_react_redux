@@ -9,11 +9,29 @@ import './App.css';
 //     </div>
 //   );
 // }
+
+class Nav extends Component {
+  hello() {
+    return 'says hello.';
+  }
+  render() {
+    var li = this.hello();
+    return (
+      <nav>
+        <ol>
+          {li}
+        </ol>
+      </nav>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
         <div className="App">
           Hello World
+          <Nav></Nav>
         </div>
     );
   }
